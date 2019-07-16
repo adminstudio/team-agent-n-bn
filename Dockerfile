@@ -1,10 +1,11 @@
 FROM jetbrains/teamcity-agent
 LABEL maintainer="Asdrubal Gonzalez" \
-    description="This image for testing"
+    description="This image for testing frontend"
 RUN apt update \
     && apt upgrade -y \
     && apt install apt-utils -y \
-    && apt install -y gconf-service \
+    && DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends build-essential \
+    && DEBIAN_FRONTEND=noninteractive apt install -y gconf-service \
     libasound2 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
@@ -45,7 +46,7 @@ RUN apt update \
     wget
 RUN curl -sL https://deb.nodesource.com/setup_10.x -o /root/nodesource_setup.sh \
     && bash /root/nodesource_setup.sh \
-    && apt install nodejs -y \
+    && DEBIAN_FRONTEND=noninteractive apt install nodejs -y \
     && npm install typescript -g \
-    && apt autoremove \
+    && DEBIAN_FRONTEND=noninteractive apt autoremove \
     && rm -rf /var/lib/apt/lists/*
