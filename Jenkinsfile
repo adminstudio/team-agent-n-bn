@@ -39,7 +39,7 @@ pipeline {
       }
     }
     environment {
-      registry = 'studioone/team-agent-n-bn'
+      registry = 'studioone/team-front'
       registryCredential = 'dockerhub'
     }
   }
