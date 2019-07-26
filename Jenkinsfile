@@ -13,13 +13,7 @@ pipeline {
             sh 'dockerImage = docker.build registry + ":$BUILD_NUMBER"'
           }
         }
-        stage('') {
-          steps {
-            slackSend(baseUrl: 'https://hooks.slack.com/services/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', channel: 'Devops', message: 'ERRRORRRR', sendAsText: true, token: 'xoxp-400027158563-399604058529-566013170739-5594da8f0d355748294c82776a85b535', username: 'jenkins')
-          }
-        }
-      }
-    }
+        
     stage('Deploy Image') {
       steps {
         sh '''docker.withRegistry( \'\', registryCredential ) {
@@ -32,12 +26,7 @@ pipeline {
           sh 'docker rmi $registry:$BUILD_NUMBER'
         }
       }
-      stage('Done') {
-        steps {
-          slackSend(token: 'xoxp-400027158563-399604058529-566013170739-5594da8f0d355748294c82776a85b535', channel: 'Devops', baseUrl: 'xoxp-400027158563-399604058529-566013170739-5594da8f0d355748294c82776a85b535', username: 'Jenkins', message: 'Done..Everything is good!!!')
-        }
-      }
-    }
+      
     environment {
       registry = 'studioone/team-front'
       registryCredential = 'dockerhub'
