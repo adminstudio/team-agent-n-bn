@@ -1,6 +1,6 @@
 FROM jetbrains/teamcity-agent
 LABEL maintainer="Asdrubal Gonzalez" \
-    description="This image for testing"
+    description="This image for testing a teamcity agent"
 RUN apt update \
     && apt upgrade -y \
     && apt install apt-utils -y \
