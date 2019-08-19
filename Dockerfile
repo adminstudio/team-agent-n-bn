@@ -47,5 +47,6 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x -o /root/nodesource_setup.sh 
     && bash /root/nodesource_setup.sh \
     && apt install nodejs -y \
     && npm install typescript -g \
+	&& apt install rsync -y \
     && apt autoremove \
     && rm -rf /var/lib/apt/lists/*
